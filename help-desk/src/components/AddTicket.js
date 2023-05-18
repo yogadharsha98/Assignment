@@ -31,6 +31,7 @@ const AddTicket = () => {
     //console.log(e.target.name, e.target.value);
   };
 
+  
   const sendRequest = async()=> {
     await axios.post("http://localhost:5000/tickets",{
       name:String(inputs.name),
