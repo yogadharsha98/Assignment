@@ -6,7 +6,6 @@ const user = require("./routes/userRoutes")
 const ticket = require("./routes/ticketRoutes")
 const technicians = require("./routes/technicianRoutes")
 
-
 //Middlerware
 app.use(express.json())
 app.use(cors())

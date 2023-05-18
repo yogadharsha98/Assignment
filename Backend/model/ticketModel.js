@@ -25,12 +25,10 @@ const ticketSchema = new Schema({
   },
   priority: {
     type: String,
-    enum: ["Low", "Medium", "High"],
     required: true,
   },
   category: {
     type: String,
-    enum: ["Software", "Hardware"],
     required: true,
   },
   location: {
@@ -48,8 +46,7 @@ const ticketSchema = new Schema({
   },
   progress: {
     type: String,
-    enum: ["Case Opened", "Ongoing", "Finished"],
-    default: "Case Opened",
+    
   },
   
 });
