@@ -20,24 +20,29 @@ const fetchHandler = async () => {
 
 const Tickets = () => {
   const history = useNavigate();
-  const id = useParams().id
+  const id = useParams().id;
   const [tickets, setTickets] = useState();
 
   useEffect(() => {
     fetchHandler().then((data) => setTickets(data.tickets));
   }, []);
 
-  const deleteHandler = async() => {
+  const deleteHandler = async () => {
     await axios
       .delete(`http://localhost:5000/tickets/${id}`)
       .then((res) => res.data)
-      .then(()=>history("/tickets"));
+      .then(() => history("/tickets"));
   };
 
   return (
     <>
-      <div>
-        <TableContainer component={Paper} sx={{ maxHeight: "500px" }}>
+      <div >
+        <TableContainer
+          component={Paper}
+          sx={{
+            maxHeight: "500px",
+          }}
+        >
           <Table aria-label="Ticket lists" stickyHeader>
             <TableHead>
               <TableRow>
@@ -51,6 +56,7 @@ const Tickets = () => {
                 <TableCell>Category</TableCell>
                 <TableCell>Priority</TableCell>
                 <TableCell>Image</TableCell>
+                <TableCell>Price</TableCell>
                 <TableCell>Technician</TableCell>
                 <TableCell>Assign</TableCell>
                 <TableCell>Progress</TableCell>
@@ -74,6 +80,7 @@ const Tickets = () => {
                     <TableCell>{ticket.category}</TableCell>
                     <TableCell>{ticket.priority}</TableCell>
                     <TableCell>{ticket.image}</TableCell>
+                    <TableCell>{ticket.price}</TableCell>
                     <TableCell>
                       <select value="techician">
                         <option value="Kevin">Kevin</option>

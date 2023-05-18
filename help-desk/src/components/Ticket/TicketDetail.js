@@ -28,6 +28,7 @@ const TicketDetail = () => {
         category: String(inputs.category),
         priority: String(inputs.priority),
         image: String(inputs.image),
+        price: String(inputs.price),
     })
   }
   const handleSubmit = (e)=>{
@@ -125,7 +126,7 @@ const TicketDetail = () => {
             <MenuItem value="Harware">Harware</MenuItem>
           </Select>
 
-          <FormLabel>Prority</FormLabel>
+          <FormLabel>Priority</FormLabel>
           <Select
             value={inputs.priority}
             onChange={handleChange}
@@ -144,6 +145,16 @@ const TicketDetail = () => {
             fullWidth
             variant="outlined"
             name="image"
+          />
+          <FormLabel>Price</FormLabel>
+          <TextField
+            value={inputs.price}
+            onChange={handleChange}
+            margin="normal"
+            fullWidth
+            variant="outlined"
+            name="price"
+            
           />
           <Button type="submit" variant="contained">
             Update Ticket
