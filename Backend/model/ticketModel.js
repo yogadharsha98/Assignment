@@ -44,9 +44,15 @@ const ticketSchema = new Schema({
     type: String,
     required: true,
   },
+  technician:{
+    type: String,
+    default: "Kevin",
+    required: true,
+  },
   progress: {
     type: String,
-    
+    default: "Case Opened",
+    required: true,
   },
   
 });

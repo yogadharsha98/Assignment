@@ -23,6 +23,34 @@ const Tickets = () => {
   const id = useParams().id;
   const [tickets, setTickets] = useState();
 
+  const [inputs, setInputs] = useState({
+    technician: "",
+    progress: "",
+  });
+
+  const handleChange = (e) => {
+    setInputs((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const sendRequest = async () => {
+    await axios
+      .post("http://localhost:5000/tickets", {
+        technician: String(inputs.technician),
+        progress: String(inputs.progress),
+      })
+      .then((res) => res.data);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+    window.alert("Assigned Successful!");
+    sendRequest().then(() => history("/tickets"));
+  };
+
   useEffect(() => {
     fetchHandler().then((data) => setTickets(data.tickets));
   }, []);
@@ -36,7 +64,7 @@ const Tickets = () => {
 
   return (
     <>
-      <div >
+      <div>
         <TableContainer
           component={Paper}
           sx={{
@@ -58,8 +86,8 @@ const Tickets = () => {
                 <TableCell>Image</TableCell>
                 <TableCell>Price</TableCell>
                 <TableCell>Technician</TableCell>
-                <TableCell>Assign</TableCell>
                 <TableCell>Progress</TableCell>
+                <TableCell>Assign</TableCell>
                 <TableCell>Update or Delete</TableCell>
               </TableRow>
             </TableHead>
@@ -82,21 +110,29 @@ const Tickets = () => {
                     <TableCell>{ticket.image}</TableCell>
                     <TableCell>{ticket.price}</TableCell>
                     <TableCell>
-                      <select value="techician">
+                      <select
+                        value={inputs.technician}
+                        onChange={handleChange}
+                        name="technician"
+                      >
                         <option value="Kevin">Kevin</option>
-                        <option value="Sampth">Sampth</option>
+                        <option value="Sampath">Sampth</option>
                         <option value="James">James</option>
                       </select>
                     </TableCell>
                     <TableCell>
-                      <Button>Assign</Button>
-                    </TableCell>
-                    <TableCell>
-                      <select value="progress">
+                      <select
+                        value={inputs.progress}
+                        onChange={handleChange}
+                        name="progress"
+                      >
                         <option value="Case Opened">Case Opened</option>
                         <option value="Ongoing">Ongoing</option>
                         <option value="Finished">Finished</option>
                       </select>
+                    </TableCell>
+                    <TableCell>
+                      <Button onClick={handleSubmit}> Assign</Button>
                     </TableCell>
                     <TableCell>
                       <Button

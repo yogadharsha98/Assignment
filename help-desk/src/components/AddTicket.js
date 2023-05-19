@@ -51,7 +51,9 @@ const AddTicket = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
+    window.alert('Ticket created Successful!')
     sendRequest().then(() => history("/tickets"));
+    
   };
   return (
       <form onSubmit={handleSubmit}>

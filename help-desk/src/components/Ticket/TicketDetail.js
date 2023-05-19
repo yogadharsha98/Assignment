@@ -33,6 +33,7 @@ const TicketDetail = () => {
   }
   const handleSubmit = (e)=>{
     e.preventDefault();
+    window.alert('Ticket updated Successful!')
     sendRequest().then(()=>history("/tickets"))
   }
 

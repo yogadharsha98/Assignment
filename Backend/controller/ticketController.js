@@ -39,6 +39,8 @@ const addTicket = async (req, res, next) => {
     location,
     image,
     price,
+    technician,
+    progress
   } = req.body;
 
   let ticket;
@@ -54,6 +56,8 @@ const addTicket = async (req, res, next) => {
       location,
       image,
       price,
+      technician,
+      progress
     });
 
     await ticket.save();
@@ -79,6 +83,8 @@ const updateTicket = async (req, res, next) => {
     location,
     image,
     price,
+    technician,
+    progress
   } = req.body;
   let ticket;
   try {
